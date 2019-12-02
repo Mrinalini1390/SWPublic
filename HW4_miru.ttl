@@ -1,0 +1,628 @@
+@prefix uni: <http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix uni: <http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl> rdf:type owl:Ontology.
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isUsedBy
+uni:isUsedBy rdf:type owl:ObjectProperty ;
+             owl:inverseOf uni:uses .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isTakenBy
+uni:isTakenBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf uni:takes .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isOfferedBy
+uni:isOfferedBy rdf:type owl:ObjectProperty ;
+                owl:inverseOf uni:offers .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasSchedule
+uni:hasSchedule rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasPrerequisite
+uni:hasPrerequisite rdf:type owl:ObjectProperty ;
+                    owl:inverseOf uni:isPrerequisiteOf .
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#teaches
+uni:teaches rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isChairpersonOf
+uni:isChairpersonOf rdf:type owl:ObjectProperty ,
+                             owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isFacultyOf
+uni:isFacultyOf rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#isAdminOf
+uni:isAdminOf rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#studiesIn
+uni:studiesIn rdf:type owl:ObjectProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#takes
+uni:takes rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasAdvisor
+uni:hasAdvisor rdf:type owl:ObjectProperty ;
+               owl:inverseOf uni:isAdvisorOf .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasGrade
+uni:hasGrade rdf:type owl:ObjectProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#attends
+uni:attends rdf:type owl:ObjectProperty ;
+            owl:inverseOf uni:isAttendedBy .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasFeesStructure
+uni:hasFeesStructure rdf:type owl:ObjectProperty .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#ISBN_Number
+uni:ISBN_Number rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#author
+uni:author rdf:type owl:DatatypeProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#course_CRN
+uni:course_CRN rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#email_ID
+uni:email_ID rdf:type owl:DatatypeProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#firstName
+uni:firstName rdf:type owl:DatatypeProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#gender
+uni:gender rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#hasAge
+uni:hasAge rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#lastName
+uni:lastName rdf:type owl:DatatypeProperty .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#staff_ID
+uni:staff_ID rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             owl:propertyDisjointWith uni:student_ID .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#student_ID
+uni:student_ID rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#takescourses
+uni:takescourses rdf:type owl:DatatypeProperty .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#title
+uni:title rdf:type owl:DatatypeProperty .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Advisor
+uni:Advisor rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( uni:Teaching_Staff
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty uni:canBe ;
+                                                         owl:allValuesFrom uni:Full-Time_Faculty
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Books
+uni:Books rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( uni:Library
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty uni:author ;
+                                                       owl:someValuesFrom xsd:string
+                                                     ]
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty uni:ISBN_Number ;
+                                                       owl:allValuesFrom xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty uni:title ;
+                                                       owl:allValuesFrom xsd:string
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#ChairPerson
+uni:ChairPerson rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( uni:Teaching_Staff
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty uni:isChairpersonOf ;
+                                                             owl:someValuesFrom uni:Academic_Departments
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#ComputerScience
+uni:ComputerScience rdf:type owl:Class ;
+                    rdfs:subClassOf uni:Academic_Departments .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Courses
+uni:Courses rdf:type owl:Class ;
+            rdfs:subClassOf uni:Academic_Courses_and_Programs ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty uni:hasPrerequisite ;
+                              owl:someValuesFrom uni:Courses
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty uni:hasSchedule ;
+                              owl:someValuesFrom uni:ScheduleValuePartition
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty uni:uses ;
+                              owl:someValuesFrom uni:Books
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty uni:course_CRN ;
+                              owl:allValuesFrom xsd:nonNegativeInteger
+                            ] .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Grades_and_Transcripts
+uni:Grades_and_Transcripts rdf:type owl:Class ;
+                           rdfs:subClassOf uni:Registrar .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Lecture
+uni:Lecture rdf:type owl:Class ;
+            rdfs:subClassOf uni:Courses .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Graduate_Student
+uni:Graduate_Student rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( uni:Student
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty uni:takes ;
+                                                                  owl:someValuesFrom uni:Graduate
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     owl:disjointWith uni:Undergraduate_Student .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Undergraduate_Student
+uni:Undergraduate_Student rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( uni:Student
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty uni:takes ;
+                                                                       owl:someValuesFrom uni:Undergraduate
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] .
+
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Book-2
+uni:Book-2 rdf:type owl:NamedIndividual ,
+                    uni:Books ;
+           uni:isUsedBy uni:CS-505 ;
+           uni:ISBN_Number "453766"^^xsd:nonNegativeInteger ;
+           uni:author "Gang Of Four"^^xsd:string ;
+           uni:title "Design Patterns"^^xsd:string .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Book-3
+uni:Book-3 rdf:type owl:NamedIndividual ,
+                    uni:Books ;
+           uni:isUsedBy uni:CS-510 ;
+           uni:ISBN_Number "7654329"^^xsd:nonNegativeInteger ;
+           uni:author "Sommerville"^^xsd:string ;
+           uni:title "Software Engineering"^^xsd:string .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Book-4
+uni:Book-4 rdf:type owl:NamedIndividual ,
+                    uni:Books ;
+           uni:isUsedBy uni:CS-407 ;
+           uni:ISBN_Number "6544432"^^xsd:nonNegativeInteger ;
+           uni:author "Hitzler,Krotzsch & Rudolph"^^xsd:string ;
+           uni:title "Semantic Web"^^xsd:string .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Book-5
+uni:Book-5 rdf:type owl:NamedIndividual ,
+                    uni:Books ;
+           uni:isUsedBy uni:CS-345 ;
+           uni:ISBN_Number "5669073"^^xsd:nonNegativeInteger ;
+           uni:author "sasser"^^xsd:string ;
+           uni:title "Database Systems"^^xsd:string .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Book-13
+uni:Book-13 rdf:type owl:NamedIndividual ,
+                     uni:Books ;
+            uni:isUsedBy uni:CS-502 ;
+            uni:ISBN_Number "70008"^^xsd:nonNegativeInteger ;
+            uni:author "George"^^xsd:string ;
+            uni:title "Assemby Languages"^^xsd:string .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#CS-345
+uni:CS-345 rdf:type owl:NamedIndividual ,
+                    uni:Courses ,
+                    uni:Lecture ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:Undergraduate_Student
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:hasSchedule ;
+                      owl:allValuesFrom uni:Noon
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isOfferedBy ;
+                      owl:allValuesFrom uni:ComputerScience
+                    ] ;
+           uni:course_CRN "76690"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#CS-407
+uni:CS-407 rdf:type owl:NamedIndividual ,
+                    uni:Courses ,
+                    uni:Hybrid ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:Graduate_Student
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:Undergraduate_Student
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:hasSchedule ;
+                      owl:allValuesFrom uni:Evening
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isOfferedBy ;
+                      owl:allValuesFrom uni:ComputerScience
+                    ] ;
+           uni:course_CRN "40408"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#CS-505
+uni:CS-505 rdf:type owl:NamedIndividual ,
+                    uni:Courses ,
+                    uni:Lecture ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:MS_SoftwareEngineering
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:hasSchedule ;
+                      owl:allValuesFrom uni:Evening
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isOfferedBy ;
+                      owl:allValuesFrom uni:ComputerScience
+                    ] ;
+           uni:hasPrerequisite uni:CS-501 ,
+                               uni:CS-502 ;
+           uni:course_CRN "54436"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#CS-510
+uni:CS-510 rdf:type owl:NamedIndividual ,
+                    uni:Courses ,
+                    uni:Lecture ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:MS_SoftwareEngineering
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:hasSchedule ;
+                      owl:allValuesFrom uni:Evening
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isOfferedBy ;
+                      owl:allValuesFrom uni:ComputerScience
+                    ] ;
+           uni:hasPrerequisite uni:CS-345 ,
+                               uni:CS-501 ;
+           uni:course_CRN "65555"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#CS-502
+uni:CS-502 rdf:type owl:NamedIndividual ,
+                    uni:Courses ,
+                    uni:Online ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:hasSchedule ;
+                      owl:someValuesFrom uni:ScheduleValuePartition
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isTakenBy ;
+                      owl:someValuesFrom uni:CS_Major
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty uni:isOfferedBy ;
+                      owl:allValuesFrom uni:ComputerScience
+                    ] ;
+           uni:course_CRN "65880"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Chairperson-1
+uni:Chairperson-1 rdf:type owl:NamedIndividual ,
+                           uni:ChairPerson ,
+                           uni:Person ,
+                           uni:Teaching_Staff ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty uni:isChairpersonOf ;
+                             owl:allValuesFrom uni:ComputerScience
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty uni:isFacultyOf ;
+                             owl:allValuesFrom uni:ComputerScience
+                           ] ;
+                  uni:teaches uni:CS-505 ,
+                              uni:CS-510 ;
+                  uni:firstName "Chad"^^xsd:string ;
+                  uni:gender "Male"^^xsd:string ;
+                  uni:lastName "Williams"^^xsd:string ;
+                  uni:staff_ID "1211"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Employee-1
+uni:Employee-1 rdf:type owl:NamedIndividual ,
+                        uni:Non-Teaching_Staff ,
+                        uni:Person ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty uni:isAdminOf ;
+                          owl:allValuesFrom uni:ComputerScience
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty uni:isFacultyOf ;
+                          owl:allValuesFrom uni:ComputerScience
+                        ] ;
+               uni:firstName "Geneva"^^xsd:string ;
+               uni:gender "Female"^^xsd:string ;
+               uni:lastName "Deutsch"^^xsd:string ;
+               uni:staff_ID "2341"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Employee-3
+uni:Employee-3 rdf:type owl:NamedIndividual ,
+                        uni:Full-Time_Faculty ,
+                        uni:Person ,
+                        uni:Teaching_Staff ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty uni:isFacultyOf ;
+                          owl:allValuesFrom uni:ComputerScience
+                        ] ;
+               uni:teaches uni:CS-407 ,
+                           uni:CS-501 ;
+               uni:firstName "Neli"^^xsd:string ;
+               uni:gender "Female"^^xsd:string ;
+               uni:lastName "Zlatareva"^^xsd:string ;
+               uni:staff_ID "5430"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Employee-2
+uni:Employee-2 rdf:type owl:NamedIndividual ,
+                        uni:Full-Time_Faculty ,
+                        uni:Person ,
+                        uni:Teaching_Staff ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty uni:isFacultyOf ;
+                          owl:allValuesFrom uni:ComputerScience
+                        ] ;
+               uni:teaches uni:CET-501 ,
+                           uni:CS-345 ,
+                           uni:CS-502 ;
+               uni:firstName "John"^^xsd:string ;
+               uni:gender "male"^^xsd:string ;
+               uni:lastName "Mathew"^^xsd:string ;
+               uni:staff_ID "5467"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Fall-midterm
+uni:Fall-midterm rdf:type owl:NamedIndividual ,
+                          uni:Examination ,
+                          uni:Midterm_Exams .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#GRADE-A_Excellent
+uni:GRADE-A_Excellent rdf:type owl:NamedIndividual ,
+                               uni:Grades_and_Transcripts .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#GRADE-B_Good
+uni:GRADE-B_Good rdf:type owl:NamedIndividual ,
+                          uni:Grades_and_Transcripts .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#GRADE-C_Average
+uni:GRADE-C_Average rdf:type owl:NamedIndividual ,
+                             uni:Grades_and_Transcripts .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Student-1
+uni:Student-1 rdf:type owl:NamedIndividual ,
+                       uni:Graduate_Student ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:attends ;
+                         owl:someValuesFrom uni:CS_Club
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:hasFeesStructure ;
+                         owl:allValuesFrom uni:Full_Time_Fees
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:studiesIn ;
+                         owl:allValuesFrom uni:ComputerScience
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:takescourses ;
+                         owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:nonNegativeInteger
+                       ] ;
+              uni:hasAdvisor uni:Employee-2 ;
+              uni:hasGrade uni:GRADE-A_Excellent ;
+              uni:takes uni:CS-345 ,
+                        uni:CS-407 ,
+                        uni:CS-502 ,
+                        uni:Fall-Final ,
+                        uni:Fall-midterm ;
+              uni:email_ID "janani@my.ccsu.edu"^^xsd:string ;
+              uni:firstName "janani"^^xsd:string ;
+              uni:gender "female"^^xsd:string ;
+              uni:hasAge "26"^^xsd:nonNegativeInteger ;
+              uni:lastName "Ravi"^^xsd:string ;
+              uni:student_ID "34521"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Student-2
+uni:Student-2 rdf:type owl:NamedIndividual ,
+                       uni:Undergraduate_Student ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:attends ;
+                         owl:someValuesFrom uni:CS_Club
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:hasRegion ;
+                         owl:allValuesFrom uni:Non-Resident
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:studiesIn ;
+                         owl:allValuesFrom uni:ComputerScience
+                       ] ;
+              uni:hasAdvisor uni:Employee-2 ;
+              uni:hasGrade uni:GRADE-B_Good ;
+              uni:takes uni:CS-345 ,
+                        uni:CS-407 ,
+                        uni:Fall-Final ;
+              uni:email_ID "mary@my.ccsu.edu"^^xsd:string ;
+              uni:firstName "Mary"^^xsd:string ;
+              uni:gender "female"^^xsd:string ;
+              uni:hasAge "22"^^xsd:nonNegativeInteger ;
+              uni:lastName "Stephen"^^xsd:string ;
+              uni:student_ID "32678"^^xsd:nonNegativeInteger .
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Student-5
+uni:Student-5 rdf:type owl:NamedIndividual ,
+                       uni:Graduate_Student ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:attends ;
+                         owl:someValuesFrom uni:CS_Club
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:hasFeesStructure ;
+                         owl:allValuesFrom uni:Part_Time_Fees
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:studiesIn ;
+                         owl:allValuesFrom uni:ComputerScience
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:takescourses ;
+                         owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:nonNegativeInteger
+                       ] ;
+              uni:hasAdvisor uni:Employee-2 ;
+              uni:hasGrade uni:GRADE-B_Good ;
+              uni:takes uni:CS-501 ,
+                        uni:CS-502 ,
+                        uni:Fall-Final ;
+              uni:firstName "Moni"^^xsd:string ;
+              uni:gender "female"^^xsd:string ;
+              uni:lastName "Veda"^^xsd:string ;
+              uni:student_ID "43621"^^xsd:nonNegativeInteger.
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Student-8
+uni:Student-8 rdf:type owl:NamedIndividual ,
+                       uni:Graduate_Student ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:attends ;
+                         owl:someValuesFrom uni:CS_Club
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:hasFeesStructure ;
+                         owl:allValuesFrom uni:Full_Time_Fees
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:studiesIn ;
+                         owl:allValuesFrom uni:MS_SoftwareEngineering
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:takescourses ;
+                         owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:nonNegativeInteger
+                       ] ;
+              uni:hasAdvisor uni:Employee-3 ;
+              uni:hasGrade uni:GRADE-A_Excellent ;
+              uni:takes uni:CS-407 ,
+                        uni:CS-505 ,
+                        uni:CS-510 ,
+                        uni:Fall-Final ,
+                        uni:Fall-midterm ;
+              uni:email_ID "miru@my.ccsu.edu"^^xsd:string ;
+              uni:firstName "Miru"^^xsd:string ;
+              uni:gender "Female"^^xsd:string ;
+              uni:lastName "Raj"^^xsd:string ;
+              uni:student_ID "37865"^^xsd:nonNegativeInteger .
+
+
+###  http://www.cs.ccsu.edu/MrinaliniPerumalKalaiarasi/uni.owl#Student-9
+uni:Student-9 rdf:type owl:NamedIndividual ,
+                       uni:Graduate_Student ,
+                       [ owl:intersectionOf ( uni:CS_Major
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty uni:studiesIn ;
+                                                owl:allValuesFrom uni:MS_CIT
+                                              ]
+                                            ) ;
+                         rdf:type owl:Class
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:attends ;
+                         owl:someValuesFrom uni:CS_Club
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:hasFeesStructure ;
+                         owl:allValuesFrom uni:Part_Time_Fees
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty uni:takescourses ;
+                         owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:nonNegativeInteger
+                       ] ;
+              uni:hasAdvisor uni:Employee-2 ;
+              uni:hasGrade uni:GRADE-B_Good ;
+              uni:takes uni:CS-501 ,
+                        uni:CS-502 ,
+                        uni:Fall-Final ;
+              uni:firstName "Robert"^^xsd:string ;
+              uni:gender "Male"^^xsd:string ;
+              uni:lastName "Wilson"^^xsd:string ;
+              uni:student_ID "65908"^^xsd:nonNegativeInteger .
+
+
+
+
+
+
+
+
+
+
+
